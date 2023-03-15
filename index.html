@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Planets</title>
+  <script type="application/javascript" src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+  <script type="application/javascript" src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+  <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+<script type="text/babel">
+const rootElement = document.getElementById('root')
+    
+class PlanetSelector extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      planets: [],
+      planet: null,
+      planetName: null
+    };
+  }
+
+  componentDidMount() {
+    fetch("https://localhost:7105/Planets")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            planets: result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+
+  handleChange(event) {
+    const planetName = event.target.value
+
+    fetch("https://localhost:7105/Planets/" + planetName)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            planetName: planetName,
+            planet: result
+          });
+        },
+        (error) => {
+          this.setState({
+            planetName: planetName,
+            error
+          });
+        }
+      )
+  }
+
+  render() {
+    const { error, isLoaded, planets, planet, planetName } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+      <div>
+        <label>
+          Pick a planet:
+        </label>
+        <select name={planetName} onChange={this.handleChange.bind(this)}>
+          <option value="">--Please choose a planet--</option>
+          {planets.map(planet => (
+            <option key={planet.name} value={planet.name}>{planet.name}</option>
+          ))}
+        </select>
+        <PlanetDetail planet={planet} />
+      </div>
+      );
+    }
+  }
+}
+
+class PlanetDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      planet: props.planet
+    };
+  }
+
+  render() {
+    const { planet } = this.state;
+    if (!planet) {
+      return <div>Waiting for selection...</div>
+    } else {
+      return (
+      <div>
+        <div>Name: {planet.name}</div>
+        <div>Diameter: {planet.diameter}</div>
+        <div>Distance From Sun: {planet.distanceFromSun}</div>
+        <div>Mass: {planet.mass}</div>
+        <div>Type: {planet.type}</div>
+      </div>
+      );
+    }
+  }
+}
+
+ReactDOM.render(
+    <PlanetSelector />,
+    rootElement
+)
+</script>
+
+</body>
+
+</html>
