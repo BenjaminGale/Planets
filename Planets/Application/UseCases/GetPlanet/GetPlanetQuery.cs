@@ -15,8 +15,10 @@
             return new PlanetDto
             {
                 Name = planet.Name,
-                Diameter = planet.DiameterKm.ToString("G") + " km",
-                DistanceFromSun = planet.DistanceFromSunKm.ToString("G") + " km"
+                Diameter = planet.DiameterKm.ToString("N") + " km",
+                DistanceFromSun = planet.DistanceFromSunKm.ToString("N") + " km",
+                Mass = planet.MassKg.ToString("G") + "x10^24 kg",
+                Type = planet.Type.ToString(),
             };
         }
     }
