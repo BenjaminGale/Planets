@@ -85,7 +85,7 @@ class PlanetSelector extends React.Component {
             <option key={planet.name} value={planet.name}>{planet.name}</option>
           ))}
         </select>
-        <PlanetDetail planet={planet} />
+        <PlanetDetail key={planetName} planet={planet} />
       </div>
       );
     }
@@ -102,8 +102,8 @@ class PlanetDetail extends React.Component {
 
   render() {
     const { planet } = this.state;
-    if (!planet) {
-      return <div>Waiting for selection...</div>
+    if (planet == null) {
+      return <div>Waiting for planet selection...</div>
     } else {
       return (
       <div>
