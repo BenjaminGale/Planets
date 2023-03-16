@@ -5,7 +5,7 @@ using Planets.Application.UseCases.GetPlanet;
 namespace Planets.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PlanetsController : ControllerBase
     {
         private readonly GetAllPlanetsQuery _getAllPlanetsQuery;
