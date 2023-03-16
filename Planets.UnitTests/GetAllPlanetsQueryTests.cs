@@ -26,7 +26,7 @@ namespace Planets.UnitTests
 
             result
                 .Should()
-                .BeEquivalentTo(expectedResult);
+                .BeEquivalentTo(expectedResult, options => options.WithStrictOrdering());
         }
 
         public static IEnumerable<object[]> GetTestData()
