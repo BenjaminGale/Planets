@@ -5,10 +5,10 @@ As this is the first time I've ever used ReactJS I opted to use the simplest app
 up and running i.e. the script is embedded in the HTML and and I import the JSX compiler script so that
 the JSX is compiled in the browser when loaded.
 
-This does have the advantage that the SPA can be run directly from the browser without having to install 
+This does have the advantage that the SPA can be run directly from the browser without having to install
 node.js and compile the scripts. I realise in a real-world app I would use the CLI to scaffold a new project
 and the JS & HTML would be separated and the script would be precompiled. I did have a go at separating the
-HTML and Javascript but got CORS errors in the javascript debug window so opted to keep things simple to 
+HTML and Javascript but got CORS errors in the javascript debug window so opted to keep things simple to
 focus on getting the example working.
 
 The test asked for the planets to be displayed as a list. I opted to use a Select element so that I didn't
@@ -18,8 +18,8 @@ simple to get the basic functionality working.
 
 I lost quite a bit of time diagnosing some issues I was getting with my ReactJS solution.
 
-The first was that the planet detail endpoint was not being called when the selection was changed. I was 
-able to use the browser debugger to diagnose that the selection in the HTML was changing and the Visual 
+The first was that the planet detail endpoint was not being called when the selection was changed. I was
+able to use the browser debugger to diagnose that the selection in the HTML was changing and the Visual
 Studio debugger to establish that the endpoint was only ever being hit once. The endpoint was being called
 in the `componentDidMount` event so I was able to figure out that this was only ever being called once which
 was confirmed by the documentation. The solution was to move the `fetch` request to the selection changed
@@ -55,7 +55,17 @@ Entity Framework to scaffold a database and I think the Sqlite provider allows a
 been a few years since I last used Entity Framework I decided to come back to this later. Due to the time I lost
 debugging the SPA I was unable to get time to implement this.
 
+All of the methods in the solution are synchronous. I realise this goes against best practices and would use async
+in a real-world solution where I knew I would be contacting external databases and services. I decided to leave it
+out here as I knew I was using an in-memory database so no async work was required and I didn't see any benefit in
+making the methods async as I'd have had to add `Task.FromResult(...)` to all method calls which would have added
+uneccessary noise.
+
 The soution includes some integration and unit tests. The integration tests are very simple and just ensure that
 everything is wired up correctly. I've only provided unit tests for the service classes as this is where most of
 the 'logic' resides. In a real-world solution that had richer domain models I would obviously provide suitable test
 coverage.
+
+The unit tests make use of Moq and FluentAssertions. Moq is used to mock the `IPlanetRepository` interface and
+FluentAssertions is used to write readable assertions (it also provides much better messages when tests fail). These
+are both libraries I use regularly in my work so it made sense to use them here.
