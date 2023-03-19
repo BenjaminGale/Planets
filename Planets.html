@@ -87,49 +87,46 @@ class PlanetSelector extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-      <div>
-        <h1>Explore the solar system</h1>
-        <label>
-          Pick a planet:
-        </label>
-        <select name={planetName} onChange={this.handleChange.bind(this)}>
-          <option value="">--Please choose a planet--</option>
-          {planets.map(planet => (
-            <option key={planet.name} value={planet.name}>{planet.name}</option>
-          ))}
-        </select>
-        <PlanetDetail key={planetName} planet={planet} />
-      </div>
+        <div>
+          <h1>Explore the solar system</h1>
+          <label>Pick a planet:</label>
+          <select name={planetName} onChange={this.handleChange.bind(this)}>
+            <option value="">--Please choose a planet--</option>
+            {planets.map(planet => (
+              <option key={planet.name} value={planet.name}>{planet.name}</option>
+            ))}
+          </select>
+          <PlanetDetail key={planetName} planet={planet} />
+        </div>
       );
     }
   }
 }
 
-class PlanetDetail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      planet: props.planet
-    };
-  }
-
-  render() {
-    const { planet } = this.state;
-    if (planet == null) {
-      return <div>Waiting for planet selection...</div>
+function PlanetDetail(props) {
+  const { planetName, planet } = props;
+  if (planet == null) {
+      return null;
     } else {
       return (
-      <div>
-        <img class="planet-image" src={"https://localhost:7105/" + planet.imageUrl}/>
-        <div><b>Name:</b> {planet.name}</div>
-        <div><b>Diameter:</b> {planet.diameter}</div>
-        <div><b>Distance From Sun:</b> {planet.distanceFromSun}</div>
-        <div><b>Mass:</b> {planet.mass}</div>
-        <div><b>Type:</b> {planet.type}</div>
-      </div>
+        <div>
+          <img class="planet-image" src={"https://localhost:7105/" + planet.imageUrl}/>
+          <PlanetFeature label="Name" text={planet.name}/>
+          <PlanetFeature label="Diameter" text={planet.diameter}/>
+          <PlanetFeature label="Distance From Sun" text={planet.distanceFromSun}/>
+          <PlanetFeature label="Mass" text={planet.mass}/>
+          <PlanetFeature label="Type" text={planet.type}/>
+        </div>
       );
     }
-  }
+}
+
+function PlanetFeature(props) {
+  return <div><Label name={props.label}/>{props.text}</div>
+}
+
+function Label(props) {
+  return <b>{props.name}: </b>;
 }
 
 ReactDOM.render(
