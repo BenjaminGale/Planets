@@ -48,8 +48,8 @@ namespace Planets.UnitTests
                 new List<Planet> { Planet.Uranus, Planet.Saturn },
                 new List<PlanetSummaryDto>
                 {
-                    new PlanetSummaryDto { Name = "Uranus" },
-                    new PlanetSummaryDto { Name = "Saturn" }
+                    new PlanetSummaryDto { Name = "Saturn" },
+                    new PlanetSummaryDto { Name = "Uranus" }
                 }
             };
 
@@ -58,9 +58,9 @@ namespace Planets.UnitTests
                 new List<Planet> { Planet.Jupiter, Planet.Venus, Planet.Mercury },
                 new List<PlanetSummaryDto>
                 {
-                    new PlanetSummaryDto { Name = "Jupiter" },
+                    new PlanetSummaryDto { Name = "Mercury" },
                     new PlanetSummaryDto { Name = "Venus" },
-                    new PlanetSummaryDto { Name = "Mercury" }
+                    new PlanetSummaryDto { Name = "Jupiter" }
                 }
             };
         }

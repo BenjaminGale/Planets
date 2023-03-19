@@ -10,6 +10,7 @@
         public IEnumerable<PlanetSummaryDto> Execute() =>
             _planetRepository
                 .GetAll()
+                .OrderBy(p => p.DistanceFromSunKm)
                 .Select(p => new PlanetSummaryDto { Name = p.Name });
     }
 }
