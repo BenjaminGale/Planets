@@ -49,7 +49,8 @@ namespace Planets.UnitTests
                     Diameter = "12,756.00 km",
                     DistanceFromSun = "149,600,000.00 km",
                     Mass = "5.97x10^24 kg",
-                    Type = "Rocky"
+                    Type = "Rocky",
+                    ImageUrl = "images\\Earth.png"
                 }
             };
 
@@ -63,7 +64,8 @@ namespace Planets.UnitTests
                     Diameter = "142,984.00 km",
                     DistanceFromSun = "778,600,000.00 km",
                     Mass = "1898x10^24 kg",
-                    Type = "GasGiant"
+                    Type = "GasGiant",
+                    ImageUrl = "images\\Jupiter.png"
                 }
             };
         }

@@ -1,4 +1,5 @@
-﻿namespace Planets.Application.UseCases.GetPlanet
+﻿
+namespace Planets.Application.UseCases.GetPlanet
 {
     public class GetPlanetQuery
     {
@@ -19,6 +20,7 @@
                 DistanceFromSun = planet.DistanceFromSunKm.ToString("N") + " km",
                 Mass = planet.MassKg.ToString("G") + "x10^24 kg",
                 Type = planet.Type.ToString(),
+                ImageUrl = $"images\\{planet.Name}.png"
             };
         }
     }
