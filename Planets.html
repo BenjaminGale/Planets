@@ -14,6 +14,10 @@
       color: lightsteelblue;
       background: black;
     }
+
+    .planet-image {
+      width: 250px;
+    }
   </style>
 </head>
 
@@ -116,12 +120,12 @@ class PlanetDetail extends React.Component {
     } else {
       return (
       <div>
-        <img src={"https://localhost:7105/" + planet.imageUrl}/>
-        <div>Name: {planet.name}</div>
-        <div>Diameter: {planet.diameter}</div>
-        <div>Distance From Sun: {planet.distanceFromSun}</div>
-        <div>Mass: {planet.mass}</div>
-        <div>Type: {planet.type}</div>
+        <img class="planet-image" src={"https://localhost:7105/" + planet.imageUrl}/>
+        <div><b>Name:</b> {planet.name}</div>
+        <div><b>Diameter:</b> {planet.diameter}</div>
+        <div><b>Distance From Sun:</b> {planet.distanceFromSun}</div>
+        <div><b>Mass:</b> {planet.mass}</div>
+        <div><b>Type:</b> {planet.type}</div>
       </div>
       );
     }
