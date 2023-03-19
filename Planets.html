@@ -25,7 +25,9 @@
   <div id="root"></div>
 
 <script type="text/babel">
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById('root');
+
+const serverUrl = "https://localhost:7105";
 
 class PlanetSelector extends React.Component {
   constructor(props) {
@@ -40,7 +42,7 @@ class PlanetSelector extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://localhost:7105/api/Planets")
+    fetch(serverUrl + "/api/Planets")
       .then(res => res.json())
       .then(
         (result) => {
@@ -67,7 +69,7 @@ class PlanetSelector extends React.Component {
       return;
     }
 
-    fetch("https://localhost:7105/api/Planets/" + planetName)
+    fetch(serverUrl + "/api/Planets/" + planetName)
       .then(res => res.json())
       .then(
         (result) => {
@@ -95,7 +97,7 @@ class PlanetSelector extends React.Component {
       return (
         <div>
           <h1>Explore the solar system</h1>
-          <label>Pick a planet:</label>
+          <Label name="Pick a Planet"/>
           <select name={planetName} onChange={this.handleChange.bind(this)}>
             <option value="">--Please choose a planet--</option>
             {planets.map(planet => (
