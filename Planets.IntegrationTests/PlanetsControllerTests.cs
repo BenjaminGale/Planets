@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Planets.IntegrationTests
 {
     [TestClass]
-    public class UnitTest1
+    public class PlanetsControllerTests
     {
         [TestMethod]
         public async Task TestGetAllPlanetsEndpoint()
