@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Planets.Application.UseCases.GetAllPlanets;
 using Planets.Application.UseCases.GetPlanet;
+using System.ComponentModel.DataAnnotations;
 
 namespace Planets.Controllers
 {
@@ -26,7 +27,7 @@ namespace Planets.Controllers
         [Route("{name}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PlanetDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(void))]
-        public IActionResult GetPlanet(string name)
+        public IActionResult GetPlanet([Required] string name)
         {
             var planet = _getPlanetQuery.Execute(name);
             return planet != null ? Ok(planet) : NotFound();
