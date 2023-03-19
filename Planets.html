@@ -59,7 +59,13 @@ class PlanetSelector extends React.Component {
   }
 
   handleChange(event) {
-    const planetName = event.target.value
+    const planetName = event.target.value;
+
+    if (planetName == "")
+    {
+      this.setState({ planetName: null, planet: null });
+      return;
+    }
 
     fetch("https://localhost:7105/api/Planets/" + planetName)
       .then(res => res.json())
@@ -104,7 +110,7 @@ class PlanetSelector extends React.Component {
 }
 
 function PlanetDetail(props) {
-  const { planetName, planet } = props;
+  const { planet } = props;
   if (planet == null) {
       return null;
     } else {
